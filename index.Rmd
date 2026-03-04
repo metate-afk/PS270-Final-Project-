@@ -9,6 +9,19 @@ output:
 
 
 
-## Project thoughts
+## Project Thoughts 
 
 I am interested in exploring data related to... trends in populism or democratic backsliding globally.  
+
+## Project Milestone 2  
+My research question for my final project is interested in populism, specifically: is populist rhetoric more prominent in leaders campaign speeches then other kinds of speeches? I hypothesize that if leaders are making campaign speeches, then they use more populist rhetoric, and use it more often, then in other types of speeches. The explanatory variable in this project is speech type, which in the data set as a whole can be classified as campaign, ribbon cutting, international, or famous. This is a categorical variable, determined by classifying the context of speeches a leader makes. The outcome variable is populist rhetoric which is this case is measured by a populism score determined by one or two coders using "holistic grading," according to Harvard Dataverse. While looking through certain leaders in the data, I noticed that campaign speeches appeared to have high populism scores, and wanted to see if that was a universally applicable trend. One observed trend that could disprove my hypothesis that populism scores seemed much more correlated by leader then by type of speech in some sections I was looking at. 
+
+```{r}
+
+```
+
+
+
+
+
+
