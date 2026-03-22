@@ -17,11 +17,50 @@ I am interested in exploring data related to... trends in populism or democratic
 My research question for my final project is interested in populism, specifically: is populist rhetoric more prominent in leaders campaign speeches then other kinds of speeches? I hypothesize that if leaders are making campaign speeches, then they use more populist rhetoric, and use it more often, then in other types of speeches. The explanatory variable in this project is speech type, which in the data set as a whole can be classified as campaign, ribbon cutting, international, or famous. This is a categorical variable, determined by classifying the context of speeches a leader makes. The outcome variable is populist rhetoric which is this case is measured by a populism score determined by one or two coders using "holistic grading," according to Harvard Dataverse. While looking through certain leaders in the data, I noticed that campaign speeches appeared to have high populism scores, and wanted to see if that was a universally applicable trend. One observed trend that could disprove my hypothesis that populism scores seemed much more correlated by leader then by type of speech in some sections I was looking at. 
 
 ```{r}
-
+populism <- read.csv("FinalProjectPopulismData2.csv")
 ```
 
+```{r}
+library(tidyverse)
+```
 
+```{r}
+populism$totalaverage[populism$totalaverage == "NA"] <- NA
+populism$speechtype <- tolower(populism$speechtype)
+populism$speechtype <- trimws(populism$speechtype) 
+populism$speechtype[populism$speechtype %in% c("ribboncutting", "ribbon cutting")] <- "ribbon cutting"##needed to use AI to fix some issues with discrepancies in data and it made these suggetions
+populism$totalaverage <- as.numeric(populism$totalaverage)
+populism1 <- populism |>
+  group_by(speechtype) |>
+  summarize(mean_totalaverage = mean(totalaverage, na.rm = TRUE))
+populism_by_speechtype <- ggplot(data = populism1, aes(x = speechtype, y = mean_totalaverage)) +
+  geom_col(fill = "dodgerblue4") +
+  labs(title = "Mean Populism Score by Speech Type",
+       x = "Speech Type",
+       y = "Mean Score")
+populism_by_speechtype
+```
 
+```{r}
+populism1
+```
 
+```{r}
+populism$totalaverage[populism$totalaverage == "NA"] <- NA
+populism$speechtype <- tolower(populism$speechtype)
+populism$speechtype <- trimws(populism$speechtype) 
+populism$speechtype[populism$speechtype %in% c("ribboncutting", "ribbon cutting")] <- "ribbon cutting"##needed to use AI to fix some issues with discrepancies in data and it made these suggetions
+populism$totalaverage <- as.numeric(populism$totalaverage)
+populism1 <- populism |>
+  group_by(speechtype,region) |>
+  summarize(mean_totalaverage = mean(totalaverage, na.rm = TRUE))
+populism_by_speechtype <- ggplot(data = populism1, aes(x = speechtype, y = mean_totalaverage)) +
+  geom_col(fill = "dodgerblue4") +
+  facet_wrap(~region) +
+  labs(title = "Mean Populism Score by Speech Type and Region",
+       x = "Speech Type",
+       y = "Mean Score")
+populism_by_speechtype
+```
 
 
