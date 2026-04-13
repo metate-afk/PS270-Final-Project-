@@ -63,4 +63,21 @@ populism_by_speechtype <- ggplot(data = populism1, aes(x = speechtype, y = mean_
 populism_by_speechtype
 ```
 
+Looking at the first figure, it seems like I need to change the research question I am asking. Instead I want to find out if populist rhetoric has become more prominent over time? I hypothesize that populist rhetoric has become more prominent over time after observing global democratization over time. 
+
+```{r}
+populism$totalaverage <- as.numeric(populism$totalaverage)
+populism2 <- populism |>
+  group_by(yearbegin) |> 
+  filter(yearbegin >1995) |>
+  summarize(mean_totalaverage = mean(totalaverage, na.rm = T))
+populism_by_year <- ggplot(data = populism2, aes(x = yearbegin, y = mean_totalaverage)) + 
+    geom_line(color = "dodgerblue4") +
+  geom_smooth(se = FALSE, color = "red", linewidth = 0.5) +
+  labs(title = "Mean Populism Score by Year", x = "Year Candidates Term Began", y = "Mean Populism Score" )
+  
+populism_by_year
+```
+
+This shows that there has been a clear upward trend between 1995 and 2020 in the populist rhetoric recorded in this data set, which a relatively stagnant period between 2005 and 2015 and a sharp acceleration upwards after 2015, suggesting increasing prevalence in the last decade. 
 

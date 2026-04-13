@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["FinalProjectData.csv","FinalProjectPopulismData.csv","FinalProjectPopulismData.numbers","FinalProjectPopulismData1.csv","FinalProjectPopulismData2.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["FinalProjectData.csv","FinalProjectPopulismData.csv","FinalProjectPopulismData.numbers","FinalProjectPopulismData1.csv","FinalProjectPopulismData2.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1609,6 +1609,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" alt="" width="624" /></p>
 </div>
+<p>Looking at the first figure, it seems like I need to change the research question I am asking. Instead I want to find out if populist rhetoric has become more prominent over time? I hypothesize that populist rhetoric has become more prominent over time after observing global democratization over time.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>populism</span><span class='op'>$</span><span class='va'>totalaverage</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>populism</span><span class='op'>$</span><span class='va'>totalaverage</span><span class='op'>)</span></span>
+<span><span class='va'>populism2</span> <span class='op'>&lt;-</span> <span class='va'>populism</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>yearbegin</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>yearbegin</span> <span class='op'>&gt;</span><span class='fl'>1995</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>mean_totalaverage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>totalaverage</span>, na.rm <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>populism_by_year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>populism2</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>yearbegin</span>, y <span class='op'>=</span> <span class='va'>mean_totalaverage</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"dodgerblue4"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>se <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"red"</span>, linewidth <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Mean Populism Score by Year"</span>, x <span class='op'>=</span> <span class='st'>"Year Candidates Term Began"</span>, y <span class='op'>=</span> <span class='st'>"Mean Populism Score"</span> <span class='op'>)</span></span>
+<span>  </span>
+<span><span class='va'>populism_by_year</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" alt="" width="624" /></p>
+</div>
+<p>This shows that there has been a clear upward trend between 1995 and 2020 in the populist rhetoric recorded in this data set, which a relatively stagnant period between 2005 and 2015 and a sharp acceleration upwards after 2015, suggesting increasing prevalence in the last decade.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
