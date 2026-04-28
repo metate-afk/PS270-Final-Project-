@@ -1,11 +1,22 @@
 ---
-title: "PS270 Final Project"
+title: "Clever Name Here"
 author: "Margaret Tate"
-description: "My final project"
+description: "Clever discription here"
 output:
   distill::distill_article:
     self_contained: false
 ---
+#Trying Something New
+
+## Hypothesis
+
+
+
+## Data 
+
+```{r, echo = FALSE, intial data section}
+
+```
 
 
 
