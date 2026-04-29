@@ -1,46 +1,73 @@
 ---
 title: "Populism at Home"
 author: "Margaret Tate"
-description: "An investigation into right wing populist rhetoric in US battleground states"
-output:
+description: "An investigation into right wing populist rhetoric in US battleground
+  states"
+output: 
+  pdf_document: default
+  distill::distill_article:
+    self_contained: false
   html_document:
     theme:
       version: 5
-      base_font: {google: "Roboto"}
-      heading_font: {google: "Playfair Display"}
-      code_font: {google: "JetBrains Mono"}
-
-  distill::distill_article:
-    self_contained: false
+      base_font:
+        google: Roboto
+      heading_font:
+        google: Playfair Display
+      code_font:
+        google: JetBrains Mono
 ---
+## Introduction
+### Background 
 
-## Background 
+The research done for the paper this data set was originally collected for was the first attempt at quantitative measures of populist ideas among US state level officials. The data set, called the *US Governors Populism Database*, in an extension of the *Global Populism Database*, and uses the same holistic grading of speech samples, measurement technique, and analogous sampling. The research included analysis of 400 speeches from 100 governors across all 50 states. The sample included two governor terms for each state, one before and one after the 2016 election. The research was initially done with the goal of collecting and analyzing quantitative evidence of populist rhetoric among sub national party officials to test claims by scholars that Trump's election 2016, and again in 2024, was part of a greater wave of radical right populism across Western Democracies (CITE).
 
-The research done for the paper this data set was originally collected for was the first attempt at quantitative measures of populist ideas among US state level officials. The data set, called the *US Governors Populism Database*, in an extension of the *Global Populism Database*, and uses the same holistic grading of speech samples, measurement technique, and analogous sampling. The research included analysis of 400 speeches from 100 governors across all 50 states. The sample included two governor terms for each state, one before and one after the 2016 election. The research was initially done with the goal of collecting and analyzing quantitative evidence of populist rhetoric among sub national party officials to test claims by scholars that Trump's election 2016, and again in 2024, was part of a greater wave of radical right populism across Western Democracies.
+The study found that in the US, the election of a populist national leader, Donald Trump, was not necessarily associated with high levels of sub national populism. While Republican governors show higher levels of populist rhetoric than Democrats, this difference predates Trump's presidency and showed no evidence of intensifying following his first election(CITE).
 
-The study found that in the US, the election of a populist national leader, Donald Trump, was not necessarily associated with high levels of sub national populism. While Republican governors show higher levels of populist rhetoric than Democrats, this difference predates Trump’s presidency and showed no evidence of intensifying following his first election. 
+# Research Question
+I am interested in how these conclusions about right wing populism in sub national leaders changes when you consider if a state is a swing state: a state where constituents are significantly divided down party lines and experience high-intensity campaigning during election cycles. In 2016, Trump won a significant  majority of key US swing states, effectively "flipping the blue wall" including Pennsylvania, Michigan, Wisconsin, Florida, Ohio, Iowa, North Carolina, and Arizona. My research seeks to answer the question: how did a state's status as a swing state impact the level of right-wing populist rhetoric among republican state governors in the year Donald Trump was elected? 
 
-I am interested in how these conclusions about right wing populism in sub national leaders changes when you consider if a state is a swing state: a state where constituents are significantly divided down party lines and experience high-intensity campaigning during election cycles. In 2016, Trump won a signifciant  majority of key US swing states, effectively "flipping the blue wall" including Pennsylvania, Michigan, Wisconsin, Florida, Ohio, Iowa, North Carolina, and Arizona.   
+This is an important question because it can help us better understand the larger populist wave across western democracies and how intense electoral competition could potentially act as a catalyst for populist rhetoric. It could also provide insight into the unique conditions under which a populist national leader being elected increases levels of populism in sub national government, and examines how the political context of a state changes political behavior.  
 
 # Hypothesis 
 
 In battleground states, elections are intensely competitive and outcomes are uncertain, as neither major party has a consistent lock on the majority vote. These states are characterized by political diversity, rapidly shifting demographics, high sensitivity to economics, and intense campaign focus. 
 
-Right wing party members, the party of interest for this analysis, cannot rely on conservative bases to win and need to persuade independents, low-information voters, and dissected democrats in order to win in these states. Additionally, populist rhetoric, which is "anti-establishment," "us vs. them," and offers simplistic solutions with emotional appeal, appeals across party lines and activates voters who feel left behind economically, which would make it effective in battleground states. This leads me to believe that in an environment of intense campaigning and competition, sub national conservatives in swing states may have adapted their rhetoric to be more populist. I don't believe this would have happened in solid "red" states because these leaders can rely of traditional conservative messaging with their ideologically aligned conservative bases, less competition, and less need to mobilize swing voters. 
+Right wing party members, the party of interest for this analysis, cannot rely on conservative bases to win and need to persuade independents, low-information voters, and disaffected democrats in order to win in these states. Additionally, populist rhetoric, which is "anti-establishment," "us vs. them," and offers simplistic solutions with emotional appeal, appeals across party lines and activates voters who feel left behind economically, which would make it effective in battleground states. This leads me to believe that in an environment of intense campaigning and competition, sub national conservatives in swing states may have adapted their rhetoric to be more populist. I don't believe this would have happened in solid "red" states because these leaders can rely of traditional conservative messaging with their ideologically aligned conservative bases, less competition, and less need to mobilize swing voters. 
 
 Additionally, I believe this logic will hold both during and after Trump's victory as sub national leaders in swing states would have observed the success of Trump style populism in swing states and attempt to use it at sub national levels. 
 
+I hypothesize that, if a state was characterized as being a "swing state" or "battleground state", populist rhetoric among their republican sub national leaders will be higher then among sub national leaders in "red" states with conservative strongholds. 
 
-During and after the 2016 campaign cycle and election, if a state was characterized as being a "swing state" or "battleground state", populist rhetoric among their republican sub national leaders will be higher then among sub national leaders in "red" states with conservative strongholds.   
+The hypothesis will be evaluated based on the estimated effect of swing state status on populism scores in a linear regression model. The hypothesis is supported if swing states exhibit a positive and statistically significant effect (p < 0.05), with a 95% confidence interval. This would indicate that populist rhetoric of governors is reliably higher in swing states compared to red states. Conversely, the hypothesis will not be supported if the coefficient is not statistically significant or is negative. 
 
-## Data 
+# Data
 
-```{r, intial data section, echo = FALSE}
+### Outcome and Predictors 
+
+The outcome in this analysis is populist rhetoric among republican governors and is defined by a continuous populism score for state governors, which is determined through holistic grading of 400 speech samples. Higher values indicate a greater use of populist rhetoric. The predictor is state type, either swing state or red state. A swing state is one quantitatively defined as a state with under 5% margin of victory for the winning candidate. Red states are quantitatively defined as those where Trump's margin of victory was greater than 10%. 
+
+The swing states in the 2016 were: Florida,Pennsylvania, Michigan, Wisconsin, North Carolina, Arizona, Georgia, Nevada, Colorado, Minnesota, New Hampshire, Maine, Virginia, Iowa, and Ohio. While the strictly red states at the same time were: Alabama, Alaska, Arkansas, Idaho, Kansas, Kentucky, Louisiana, Mississippi, Missouri, Montana, Nebraska, North Dakota, Oklahoma, South Carolina, South Dakota, Tennessee, Texas, Utah, West Virginia, and Wyoming. 
+
+```{r, outcome variable of interest, echo = FALSE, message = FALSE}
 library(tidyverse)
 gov_populism <- read.csv("replication_data.csv") 
-rep_data <- gov_populism |>
-  filter(party == "R") |>
-  mutate(swing = if_else(state %in% c("Florida1", "Florida2",
+figure_1 <- gov_populism |> 
+  filter(party == "R")
+  ggplot(gov_populism, aes(x = score)) +
+  geom_histogram(bins = 30, color = "black",fill = "#9999DC") +
+  labs(
+    x = "Populism Score",
+    y = "Frequency",
+    title = "Distribution of Populism Scores Among Right Wing Governors", caption = "Figure 1"
+  )
+```
+
+# Results 
+
+
+```{r, relationship of interest, echo = FALSE, message = FALSE}
+swing_state <- c("Florida1", "Florida2",
                        "Ohio1", "Ohio2",
                        "Pennsylvania1", "Pennsylvania2",
                        "Michigan1", "Michigan2",
@@ -48,18 +75,110 @@ rep_data <- gov_populism |>
                        "North Carolina1", "North Carolina2",
                        "Iowa1", "Iowa2", 
                        "Nevada1", "Nevada2",
-                       "Colorado1", "Colorado2", "New Hampshire1", "New Hampshire2", "Virginia1", "Virginia2"), "Swing State", "Not Swing State")) 
-  boxplot_fig1 <-ggplot(rep_data, aes(x = swing, y = score)) +
+                       "Colorado1", "Colorado2", 
+                       "New Hampshire1", "New Hampshire2", 
+                       "Arizona1", "Arizona2", 
+                       "Maine1", "Maine2", 
+                       "Minnesota1", "Minnesota2") 
+  
+red_state <- c("Alabama1","Alabama2",
+                "Alaska1","Alaska2",
+                "Arkansas1","Arkansas2",
+                "Idaho1","Idaho2",
+                "Kansas1","Kansas2",
+                "Kentucky1","Kentucky2",
+                "Louisiana1","Louisiana2",
+                "Mississippi1","Mississippi2",
+                "Missouri1","Missouri2",
+                "Montana1","Montana2",
+                "Nebraska1","Nebraska2",
+                "North Dakota1","North Dakota2",
+                "Oklahoma1","Oklahoma2",
+                "South Carolina1","South Carolina2",
+                "South Dakota1","South Dakota2",
+                "Tennessee1","Tennessee2",
+                "Texas1","Texas2",
+                "Utah1","Utah2",
+                "West Virginia1","West Virginia2",
+                "Wyoming1","Wyoming2")
+rep_data <- gov_populism |>
+  filter(party == "R") |>
+   mutate(
+    pre_post_election = case_when(
+      str_detect(state, "1$") ~ "Pre-2016 Election",
+      str_detect(state, "2$") ~ "Post-2016 Election")) |>
+  mutate(state_type = case_when(
+      state %in% swing_state ~ "Swing State",
+      state %in% red_state ~ "Red State"))
+
+rep_data <- rep_data |>  
+  filter(!is.na(state_type))
+  
+boxplot_fig2 <-ggplot(rep_data, aes(x = state_type, y = score, fill = state_type)) +
     geom_boxplot() +
-    labs(title = "Populism Scores of Conservative Governers: Swing vs. Red States", x = "State Type", y = "Populism Score", caption = "Figure 1")
-boxplot_fig1
+    geom_jitter(width = 0.1, alpha = 0.3, fill = "black") +
+    scale_fill_manual(values = c("Swing State" = "#9999DC", "Red State" = "indianred")) +
+    labs(title = "Populism Scores of Conservative Governers: Swing vs. Red States", x = "State Type", y = "Populism Score", caption = "Figure 2", fill = "State Type")
+  boxplot_fig2
+
+boxplot_fig3 <-ggplot(rep_data, aes(x = state_type, y = score, fill = state_type)) +
+    geom_boxplot() +
+    facet_wrap(~pre_post_election) +
+    scale_fill_manual(values = c("Swing State" = "#9999DC", "Red State" = "indianred")) +
+    labs(title = "Populism Scores of Conservative Governers: Swing vs. Red States", x = "State Type", y = "Populism Score", caption = "Figure 3", fill = "State Type")
+
 
 ```
 
+## Regression 
+
+```{r, regression, echo = FALSE, message = FALSE}
+library(broom)
+library(infer)
+library(modelsummary)
+
+ate_result <- rep_data |>
+  specify(score ~ state_type) |>
+  calculate(stat = "diff in means", order = c("Swing State", "Red State"))
+
+boot_ci <- rep_data |>
+   specify(score ~ state_type) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "diff in means", order = c("Swing State", "Red State")) |>
+  summarize(lower = quantile(stat, 0.025),
+    upper = quantile(stat, 0.975))
+
+regression_model_3 <- lm(score ~ state_type, data = rep_data)
+
+regression_model_4 <- lm(score ~ state_type + pre_post_election + early_endorsment + coder_university, data = rep_data)
+
+modelsummary( list("Model 1 (Baseline)" = regression_model_3,
+       "Model 2 (Controls)"  = regression_model_4),
+  coef_rename = c(
+    "state_typeSwing State"              = "Swing State",
+    "pre_post_electionPre-2016 Election" = "Pre-2016 Election",
+    "early_endorsmentYes"                = "Early Trump Endorsement",
+    "coder_universityCEU"                = "Coder Institution (CEU)"),
+  gof_map = c("nobs", "r.squared", "adj.r.squared"),
+  title = "Effect of Swing State Status on Governor Populism Scores", digits = 3)
+```
+
+## Regression Analysis 
+
+To evaluate whether swing state status is associated with higher levels of right-wing populist rhetoric among Republican governors, I estimated two linear regression models with governor populism score as the outcome. Model 1 includes only state type, either swing or red, as a predictor, while model 2 adds controls for election period (term before Trump's election or after), early trump endorsement, and coder's university to account for some potential confounders.
+
+The results do not support the hypothesis. In Model 1, Republican governors in swing states score 0.08 points higher on the populism scale than those in red states, but this difference is not statistically significant as the p value is 0.263 (greater than 0.05). this finding is consistent with the braoder bootstrap confidence interval, which ranges from -0.053 and 0.209 and crosses zero, which indicates that the observed difference is within the range of what we would expect by chance. For these reasons, Model 1 clearly shows we fail to reject the null hypothesis. 
+
+When controls are introduced in Model 2, the estimated swing state effect shrinks substantially to 0.017 with a p value of 0.814, providing no evidence that the state electoral context independently shapes sub national right-wing populist rhetoric. This suggests that the small positive difference observed in model 1 is in part attributable to other confounding factors than state status itself. 
+
+It's important to note that early Trump endorsement is the strongest predictor in Model 2, with endorsing governers scoring 0.182 points higher on average. However, this observed difference is not statistically significant as the p value is 0.101. This suggests that individual level political alignment with Trump, a national populist leader, may be a more relevant driver of sub national leaders' populist rhetoric. 
 
 
 
+### Works Cited 
 
+# Code
 
+```{r print-code, ref.label=knitr::all_labels(), echo = TRUE, eval=FALSE}
 
-
+```
