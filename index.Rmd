@@ -174,7 +174,7 @@ When controls are introduced in Model 2, the estimated swing state effect shrink
 It's important to note that early Trump endorsement is the strongest predictor in Model 2, with endorsing governers scoring 0.182 points higher on average. However, this observed difference is not statistically significant as the p value is 0.101. This suggests that individual level political alignment with Trump, a national populist leader, may be a more relevant driver of sub national leaders' populist rhetoric. 
 
 
-adding somthing to see if it commits 
+
 ### Works Cited 
 
 # Code
